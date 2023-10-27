@@ -14,6 +14,15 @@ class CityService {
       throw { err };
     }
   }
+  async createBulkCities(data) {
+    try {
+      const city = await this.cityRepository.createBulkCities(data);
+      return city;
+    } catch (err) {
+      console.log("something went wrong at service layer");
+      throw { err };
+    }
+  }
 
   async getCity(cityId) {
     try {
@@ -51,6 +60,16 @@ class CityService {
         name: filter.name,
       });
       return cities;
+    } catch (err) {
+      console.log("something went wrong at service layer");
+      throw { err };
+    }
+  }
+
+  async getAllAirportsOfCity(cityId) {
+    try {
+      const airports = await this.cityRepository.getAllAirportsOfCity(cityId);
+      return airports;
     } catch (err) {
       console.log("something went wrong at service layer");
       throw { err };

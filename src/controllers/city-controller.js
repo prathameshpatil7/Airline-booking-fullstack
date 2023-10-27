@@ -22,6 +22,27 @@ const create = async (req, res) => {
   }
 };
 
+// POST -> /cities -> req.body
+const createBulk = async (req, res) => {
+  try {
+    const city = await cityService.createBulkCities(req.body);
+    return res.status(201).json({
+      data: city,
+      success: true,
+      message: "Successfully created a city !!",
+      err: {},
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "not able to create a city !!",
+      err: err,
+    });
+  }
+};
+
 // DELETE -> /city/:id
 const destroy = async (req, res) => {
   try {
@@ -104,10 +125,30 @@ const getAll = async (req, res) => {
   }
 };
 
+const getAllAirportsOfCity = async (req, res) => {
+  try {
+    const cityId = req.params.id;
+
+    const airportLists = await cityService.getAllAirportsOfCity(cityId);
+
+    return res.status(200).json({
+      data: airportLists,
+      success: true,
+      message: "Successfully fetched all airports",
+      err: {},
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 module.exports = {
   create,
+  createBulk,
   destroy,
   get,
   update,
   getAll,
+  getAllAirportsOfCity,
 };

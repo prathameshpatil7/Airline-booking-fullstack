@@ -14,6 +14,15 @@ class CityRepository {
     }
   }
 
+  async createBulkCities(data) {
+    try {
+      const city = await City.bulkCreate(data);
+      return city;
+    } catch (err) {
+      throw new Error("Error" + err);
+    }
+  }
+
   async deleteCity(cityId) {
     try {
       await City.destroy({
@@ -72,6 +81,16 @@ class CityRepository {
       const cities = await City.findAll();
       return cities;
     } catch {
+      throw new Error("Erro:" + err);
+    }
+  }
+
+  async getAllAirportsOfCity(cityId) {
+    try {
+      const city = await City.findByPk(cityId);
+      const airports = await city.getAirports();
+      return airports;
+    } catch (error) {
       throw new Error("Erro:" + err);
     }
   }
