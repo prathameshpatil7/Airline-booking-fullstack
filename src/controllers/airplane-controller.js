@@ -1,13 +1,13 @@
-const { AirportService } = require("../services/index");
-const airportService = new AirportService();
+const { AirplaneService } = require("../services/index");
+const airplaneService = new AirplaneService();
 
 const create = async (req, res) => {
   try {
-    const airport = await airportService.create(req.body);
+    const airplane = await airplaneService.create(req.body);
     return res.status(201).json({
-      data: airport,
+      data: airplane,
       success: true,
-      message: "airport created successfully",
+      message: "airplane created successfully",
       err: {},
     });
   } catch (err) {
@@ -15,7 +15,7 @@ const create = async (req, res) => {
     return res.status(500).json({
       data: {},
       success: false,
-      message: "not able to create a airport !!",
+      message: "not able to create a airplane !!",
       err: err,
     });
   }
@@ -23,11 +23,11 @@ const create = async (req, res) => {
 
 const createBulk = async (req, res) => {
   try {
-    const airport = await airportService.createBulk(req.body);
+    const airplane = await airplaneService.createBulk(req.body);
     return res.status(201).json({
-      data: airport,
+      data: airplane,
       success: true,
-      message: "Successfully created a airport !!",
+      message: "Successfully created a airplane !!",
       err: {},
     });
   } catch (err) {
@@ -35,19 +35,18 @@ const createBulk = async (req, res) => {
     return res.status(500).json({
       data: {},
       success: false,
-      message: "not able to create a airport !!",
+      message: "not able to create a airplane !!",
       err: err,
     });
   }
 };
-
 const get = async (req, res) => {
   try {
-    const airport = await airportService.get(req.params.id);
+    const airplane = await airplaneService.get(req.params.id);
     return res.status(200).json({
-      data: airport,
+      data: airplane,
       success: true,
-      message: "airport fetched successfully",
+      message: "airplane fetched successfully",
       err: {},
     });
   } catch (err) {
@@ -55,7 +54,7 @@ const get = async (req, res) => {
     return res.status(500).json({
       data: {},
       success: false,
-      message: "not able to fetch a airport !!",
+      message: "not able to fetch a airplane !!",
       err: err,
     });
   }
@@ -63,11 +62,11 @@ const get = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
-    const airports = await airportService.getAll();
+    const airplanes = await airplaneService.getAll();
     return res.status(200).json({
-      data: airports,
+      data: airplanes,
       success: true,
-      message: "airport fetched successfully",
+      message: "airplane fetched successfully",
       err: {},
     });
   } catch (err) {
@@ -75,7 +74,7 @@ const getAll = async (req, res) => {
     return res.status(500).json({
       data: {},
       success: false,
-      message: "not able to fetch a airport !!",
+      message: "not able to fetch a airplane !!",
       err: err,
     });
   }
@@ -83,17 +82,17 @@ const getAll = async (req, res) => {
 
 const destroy = async (req, res) => {
   try {
-    const response = await airportService.destroy(req.params.id);
+    const response = await airplaneService.destroy(req.params.id);
     return res.status(200).json({
       success: response,
-      message: "airport deleted successfully",
+      message: "airplane deleted successfully",
       err: {},
     });
   } catch (err) {
     console.log(err);
     return res.status(500).json({
       success: false,
-      message: "not able to delete a airport !!",
+      message: "not able to delete a airplane !!",
       err: err,
     });
   }
@@ -101,11 +100,11 @@ const destroy = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const airport = await airportService.update(req.params.id, req.body);
+    const airplane = await airplaneService.update(req.params.id, req.body);
     return res.status(200).json({
-      data: airport,
+      data: airplane,
       success: true,
-      message: "airport updated successfully",
+      message: "airplane updated successfully",
       err: {},
     });
   } catch (err) {
@@ -113,7 +112,7 @@ const update = async (req, res) => {
     return res.status(500).json({
       data: {},
       success: false,
-      message: "not able to update a airport !!",
+      message: "not able to update a airplane !!",
       err: err,
     });
   }
